@@ -3,9 +3,7 @@ package com.company.sorting;
 public class SortApp {
 
     public static void main(String args[]) {
-        Sort bubble = new SelectSort(10, true);
-        bubble.display();
-        bubble.sort();
-        bubble.display();
+        InsertSort bubble = new InsertSort(6, true);
+        System.out.println("Медиана равна " + bubble.median());
     }
 }

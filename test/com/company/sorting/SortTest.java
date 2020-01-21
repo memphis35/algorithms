@@ -1,7 +1,6 @@
 package com.company.sorting;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 public class SortTest {
@@ -10,12 +9,21 @@ public class SortTest {
     private int[] result = {11, 22, 33, 44, 55, 66, 77, 88, 99};
 
     @Test
-    public void bubbleSortTest() {
+    public void bubbleSortTest1() {
         bubble = new BubbleSort(10, false);
         bubble.setBox(test);
         bubble.sort();
         Assert.assertArrayEquals(result, bubble.getBox());
     }
+
+    @Test
+    public void bubbleSortTest2() {
+        BubbleSort bubble2 = new BubbleSort(10, false);
+        bubble2.setBox(test);
+        bubble2.bubbleSort();
+        Assert.assertArrayEquals(result, bubble2.getBox());
+    }
+
 
     @Test
     public void selectSortTest() {
