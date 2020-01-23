@@ -2,7 +2,7 @@ package com.company.sorting;
 
 public class BubbleSort extends Sort {
 
-    public BubbleSort(int size, boolean fill) {
+    BubbleSort(int size, boolean fill) {
         super(size, fill);
     }
 
@@ -32,7 +32,7 @@ public class BubbleSort extends Sort {
      * два внешних индекса: справа (старый индекс out) и слева.
      */
 
-    public void bubbleSort() { // взят из книги
+    void bubbleSort() { // взят из книги
         int out, in;
         for (out = getBox().length - 1; out > 1; out--) {
             for (in = 0; in < out; in++) {
@@ -52,6 +52,36 @@ public class BubbleSort extends Sort {
         int temp = box[one];
         box[one] = box[two];
         box[two] = temp;
+    }
+
+    /**
+     * 3.4. Еще один простой алгоритм сортировки — сортировка методом четно-нечетных перестановок —
+     * основан на многократном выполнении двух проходов по массиву. На первом проходе ищутся все
+     * пары элементов a[j] и a[j+1], где j — нечетное число (j = 1, 3, 5, …). Если ключи
+     * следуют в неверном порядке, элементы меняются местами. На втором проходе то же самое
+     *  делается для всех четных значений (j = 2, 4, 6, …). Двухпроходная обработка выполняется
+     * многократно до тех пор, пока массив не будет полностью отсортирован. Замените метод
+     * bubbleSort() в bubbleSort.java методом четно-нечетных перестановок oddEvenSort().
+     * Убедитесь в том, что он работает для произвольных объемов данных. Требуется определить,
+     * сколько раз будет выполняться двухпроходная обработка.
+     */
+
+   void oddEvenSort() {
+        int count = 0;
+        boolean even = true;
+        boolean sorted = true;
+        do {
+            sorted = true;
+            for (int i = even ? 0 : 1; i < box.length - 1; i = i + 2) {
+                if (box[i] > box[i+1]) {
+                    sorted = false;
+                    swap(i, i+1);
+                }
+            }
+            count++;
+            even = !even;
+        } while (!sorted | count < 2);
+       System.out.println("Потребовалось " + count + " прохода(-ов). Длина массива " + box.length);
     }
 }
 

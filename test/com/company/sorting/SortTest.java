@@ -5,39 +5,59 @@ import org.junit.Test;
 
 public class SortTest {
     private Sort bubble;
-    private int[] test = {99, 55, 22, 77, 44, 66, 88, 11, 33};
-    private int[] result = {11, 22, 33, 44, 55, 66, 77, 88, 99};
 
     @Test
     public void bubbleSortTest1() {
-        bubble = new BubbleSort(10, false);
-        bubble.setBox(test);
+        bubble = new BubbleSort(10, true);
         bubble.sort();
-        Assert.assertArrayEquals(result, bubble.getBox());
+        Assert.assertTrue(bubble.checkSortNoDups());
     }
 
     @Test
     public void bubbleSortTest2() {
-        BubbleSort bubble2 = new BubbleSort(10, false);
-        bubble2.setBox(test);
+        BubbleSort bubble2 = new BubbleSort(10, true);
         bubble2.bubbleSort();
-        Assert.assertArrayEquals(result, bubble2.getBox());
+        Assert.assertTrue(bubble2.checkSortNoDups());
     }
-
 
     @Test
     public void selectSortTest() {
-        bubble = new SelectSort(10, false);
-        bubble.setBox(test);
+        bubble = new SelectSort(10, true);
         bubble.sort();
-        Assert.assertArrayEquals(result, bubble.getBox());
+        Assert.assertTrue(bubble.checkSortNoDups());
     }
 
     @Test
     public void insertSortTest() {
-        bubble = new InsertSort(10, false);
-        bubble.setBox(test);
+        bubble = new InsertSort(10, true);
         bubble.sort();
-        Assert.assertArrayEquals(result, bubble.getBox());
+        Assert.assertTrue(bubble.checkSortNoDups());
     }
+
+    @Test
+    public void noDupsTest() {
+        InsertSort bubble2 = new InsertSort(1, false);
+        int[] test = {11, 22, 22, 33, 33, 33, 55, 66, 77, 77, 88, 99};
+        int[] result = {11, 22, 33, 55, 66, 77, 88, 99,  0,  0,  0,  0};
+        bubble2.setBox(test);
+        bubble2.noDups();
+        Assert.assertArrayEquals(result, bubble2.getBox());
+    }
+
+    @Test
+    public void sortNoDupsTest() {
+        InsertSort bubble2 = new InsertSort(1, false);
+        int[] test = {11, 22, 22, 33, 33, 33, 55, 66, 77, 77, 88, 99};
+        int[] result = {11, 22, 33, 55, 66, 77, 88, 99};
+        bubble2.setBox(test);
+        bubble2.sortNoDups();
+        Assert.assertArrayEquals(result, bubble2.getBox());
+    }
+    @Test
+    public void oddEvenSortTest() {
+        BubbleSort bubble = new BubbleSort(100, true);
+        bubble.oddEvenSort();
+        Assert.assertTrue(bubble.checkSortNoDups());
+    }
+
 }
