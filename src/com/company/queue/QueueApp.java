@@ -22,7 +22,7 @@ public class QueueApp {
                 queue = new CountlessQueue(5);
                 break;
             case 3:
-                queue = new PriorityQueue(5);
+                queue = new AnotherPriorityQueue(5);
                 break;
             default:
                 System.out.println("Wrong number. Please, re-enter the number.");

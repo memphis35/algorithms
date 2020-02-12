@@ -21,7 +21,6 @@ public class PriorityQueue extends AbstractQueue {
         }
         queue[i] = element;
         count++;
-        System.out.println("Added element " + queue[i]);
     }
 
     @Override
