@@ -1,7 +1,5 @@
 package com.company.queue;
 
-import java.util.Arrays;
-
 public class CountlessQueue extends AbstractQueue {
 
 	public CountlessQueue(int size) {
@@ -22,12 +20,7 @@ public class CountlessQueue extends AbstractQueue {
 
 	@Override
     int size() {
-        return (front <= rear && (rear - front < maxSize - 1)) ? rear - front + 1 : maxSize - (rear - front + 1);
+	    if ((front == 0 && rear == maxSize - 1) || (front - 1 == rear)) return 0;
+        return (front <= rear) ? rear - front + 1 : (maxSize - front) + (rear + 1);
     }
-
-    @Override
-	void display() {
-		System.out.println(Arrays.toString(queue));
-	}
-
 }

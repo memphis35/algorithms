@@ -20,7 +20,6 @@ public abstract class AbstractQueue {
     void insert(int element) throws FullQueueException {
         if (!isFull()) {
             add(element);
-            System.out.println("FRONT: " + front + "\tREAR: " + rear + "\tSIZE: " + size());
         } else {
             throw new FullQueueException("Queue is full.");
         }
@@ -46,7 +45,7 @@ public abstract class AbstractQueue {
      *  массива. Будьте внимательны и проследите за тем, чтобы один элемент и содержимое
      *  пустой очереди выводились корректно независимо от положения front и rear.
      */
-    void display() { // correctly works on ArrayQueue only
+    void display() { // correctly works on both queues
         int times = size();
         for (int i = front; times > 0; times--) {
             System.out.print(queue[i] + "\t");
@@ -76,7 +75,6 @@ public abstract class AbstractQueue {
         int result = queue[front];
         queue[front++] = 0;
         front = (front < maxSize) ? front : 0;
-        System.out.println("FRONT: " + front + "\tREAR: " + rear + "\tSIZE: " + size());
         return result;
     }
 }

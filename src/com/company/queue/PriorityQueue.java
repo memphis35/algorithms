@@ -4,28 +4,34 @@ public class PriorityQueue extends AbstractQueue {
 
     public PriorityQueue(int size) {
         super(size);
+        maxSize = size;
         queue = new int[size];
         count = 0;
     }
 
     @Override
     void add(int element) {
-        int i = count;
-        while (element < queue[i - 1]) {
-            queue[i] = queue[i - 1];
+        int i;
+        for (i = count; i > 0; i--) {
+            if (element <= queue[i - 1]) {
+                queue[i] = queue[i - 1];
+            } else {
+                break;
+            }
         }
         queue[i] = element;
         count++;
+        System.out.println("Added element " + queue[i]);
     }
 
-	@Override
+    @Override
     int delete() {
         int element = queue[0];
-        int i = 0;
-        while (i < count) {
-            queue[i + 1] = queue[i];
-            i++;
+        int i;
+        for (i = 0; i < count - 1; i++) {
+            queue[i] = queue[i + 1];
         }
+        queue[i] = 0;
         count--;
         return element;
     }
@@ -33,5 +39,13 @@ public class PriorityQueue extends AbstractQueue {
     @Override
     int peek() {
         return queue[0];
+    }
+
+    @Override
+    void display() {
+        for (int i = 0; i < count; i++) {
+            System.out.print(queue[i] + "\t");
+        }
+        System.out.println(System.lineSeparator());
     }
 }

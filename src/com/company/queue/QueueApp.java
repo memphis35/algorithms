@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class QueueApp {
 
     private AbstractQueue queue;
-    Scanner scan = new Scanner(System.in);
+    private Scanner scan = new Scanner(System.in);
 
     public QueueApp() {
         System.out.println("Choose a queue: ");
@@ -29,7 +29,7 @@ public class QueueApp {
         }
     }
 
-    public int getNumber() {
+    private int getNumber() {
         int number = 0;
         number = scan.nextInt();
         return number;
