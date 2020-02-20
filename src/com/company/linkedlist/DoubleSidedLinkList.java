@@ -1,5 +1,7 @@
 package com.company.linkedlist;
 
+import com.company.exceptions.EmptyListException;
+
 public class DoubleSidedLinkList extends LinkList {
     private Link last;
 
@@ -20,6 +22,17 @@ public class DoubleSidedLinkList extends LinkList {
             Link newElement = new Link(data);
             last.next = newElement;
             last = newElement;
+        }
+    }
+    @Override
+    public void deleteFirst() throws EmptyListException {
+        if (!isEmpty()) {
+            first = first.next;
+            if(isEmpty()) {
+                last = null;
+            }
+        } else {
+            throw new EmptyListException("Empty list.");
         }
     }
 
