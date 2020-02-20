@@ -26,6 +26,10 @@ public class CustomDeque {
         count = 0;
     }
 
+    public int getRear() {
+        return rear;
+    }
+
     public int[] getQueue() {
         return queue;
     }
