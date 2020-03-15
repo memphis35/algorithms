@@ -17,7 +17,7 @@ public class Link {
         return next;
     }
 
-    void displayLink() {
+    public void displayLink() {
         System.out.println(data);
     }
 

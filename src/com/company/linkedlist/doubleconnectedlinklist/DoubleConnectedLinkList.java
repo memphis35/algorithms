@@ -1,64 +1,91 @@
 package com.company.linkedlist.doubleconnectedlinklist;
 
-import com.company.exceptions.EmptyListException;
 import com.company.linkedlist.linklist.Link;
-import com.company.linkedlist.linklist.LinkList;
 
-public class DoubleConnectedLinkList extends LinkList {
-    private Link last;
+public class DoubleConnectedLinkList {
 
-    public Link getLast() {
-        return last;
+    private DoubleLink first;
+    private DoubleLink last;
+
+    private void insertFirst(DoubleLink element) {
+        last = element;
+        first = element;
     }
 
-    @Override
     public void insert(String data) {
-        Link newElement = new Link(data);
+        DoubleLink element = new DoubleLink(data);
         if (isEmpty()) {
-            last = newElement;
-        }
-        newElement.next = first;
-        first = newElement;
-    }
-
-    public void insertLast(String data) {
-        if (isEmpty()) {
-            insert(data);
+            insertFirst(element);
         } else {
-            Link newElement = new Link(data);
-            last.next = newElement;
-            last = newElement;
+            element.next = first;
+            first.previous = element;
+            first = element;
         }
     }
 
-    @Override
-    public Link delete() throws EmptyListException {
-        Link result = first;
-        if (!isEmpty()) {
+    public void insertBack(String data) {
+        DoubleLink element = new DoubleLink(data);
+        if (isEmpty()) {
+            insertFirst(element);
+        } else {
+            last.next = element;
+            element.previous = last;
+            last = element;
+        }
+    }
+
+    public DoubleLink delete() {
+        DoubleLink result = first;
+        if (!first.equals(last)) {
             first = first.next;
-            if (isEmpty()) {
-                last = null;
-            }
-            return result;
+            first.previous = null;
         } else {
-            throw new EmptyListException("Empty list.");
-        }
-    }
-
-    public Link deleteLast() throws EmptyListException {
-        Link current = first;
-        Link previous = first;
-        while (current.next != null) {
-            previous = current;
-            current = current.next;
-        }
-        Link result = current;
-        if (current.equals(first)) {
-            delete();
-        } else {
-            last = previous;
-            previous.next = null;
+            first = null;
+            last = null;
         }
         return result;
+    }
+
+    public DoubleLink deleteBack() {
+        DoubleLink result = last;
+        if (!first.equals(last)) {
+            last = last.previous.next;
+            last.next = null;
+        } else {
+            delete();
+        }
+        return result;
+    }
+
+    public void display() {
+        DoubleLink current = first;
+        System.out.print("\n");
+        while (current != null) {
+            System.out.println(current.getData());
+            current = current.next;
+        }
+    }
+
+    public void clear() {
+        while (!isEmpty()) {
+            delete();
+        }
+    }
+
+    private boolean isEmpty() {
+        return first == null & last == null;
+    }
+
+    public static void main(String[] args) {
+        DoubleConnectedLinkList example = new DoubleConnectedLinkList();
+        example.insert("Mike");
+        example.insert("Alex");
+        example.insert("Fiona");
+        example.insert("Shaun");
+        example.display();
+        while (!example.isEmpty()) {
+            example.delete();
+            example.display();
+        }
     }
 }

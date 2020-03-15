@@ -1,15 +1,15 @@
 package com.company.linkedlist.homework;
 
-import com.company.linkedlist.doubleconnectedlinklist.DoubleConnectedLinkList;
+import com.company.linkedlist.doublesidedlinklist.DoubleSidedLinkList;
 import com.company.linkedlist.linklist.Link;
 
 /**
  * 5.2. Реализуйте дек на базе двусвязного списка. Дек должен поддерживать все стандартные операции.
  */
 
-public class DCLinkListDeque {
+public class DSLinkListDeque {
 
-    DoubleConnectedLinkList deque = new DoubleConnectedLinkList();
+    DoubleSidedLinkList deque = new DoubleSidedLinkList();
 
     public void PushFront(String data) {
         deque.insert(data);

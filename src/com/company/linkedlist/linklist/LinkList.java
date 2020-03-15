@@ -53,16 +53,4 @@ public class LinkList implements LinkListInterface {
             delete();
         }
     }
-
-    /*public static void main(String[] args) {
-        LinkList example = new SortedLinkList();
-        example.insert("Mike");
-        example.insert("Alex");
-        example.insert("Fiona");
-        example.insert("Shaun");
-        example.display();
-        example.delete("Alex");
-        example.display();
-
-    }*/
 }
