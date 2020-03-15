@@ -1,4 +1,4 @@
-package com.company.linkedlist;
+package com.company.linkedlist.linklist;
 
 public class Link {
 
@@ -11,6 +11,10 @@ public class Link {
 
     public String getData() {
         return data;
+    }
+
+    public Link getNext() {
+        return next;
     }
 
     void displayLink() {
@@ -28,6 +32,8 @@ public class Link {
 
     @Override
     public int hashCode() {
-        return super.hashCode();
+        return data.hashCode();
     }
+
+
 }
