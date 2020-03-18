@@ -13,14 +13,14 @@ public class LinkList implements LinkListInterface {
 
     public void insert(String data) {
         Link newElement = new Link(data);
-        newElement.next = first;
+        newElement.setNext(first);
         first = newElement;
     }
 
     public Link delete() throws EmptyListException {
         Link result = first;
         if (!isEmpty()) {
-            first = first.next;
+            first = first.getNext();
             return result;
         } else {
             throw new EmptyListException("Empty list.");
@@ -31,7 +31,7 @@ public class LinkList implements LinkListInterface {
         Link current = first;
         while (current != null) {
             current.displayLink();
-            current = current.next;
+            current = current.getNext();
         }
         System.out.print(System.lineSeparator());
     }

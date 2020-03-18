@@ -4,7 +4,7 @@ import com.company.exceptions.EmptyQueueException;
 import com.company.exceptions.FullQueueException;
 
 /**
- * 4.2. Создайте класс Deque по описанию деков (двусторонних очередей) в этой главе.
+ * @homework 4.2. Создайте класс Deque по описанию деков (двусторонних очередей) в этой главе.
  * Класс должен содержать методы insertLeft(), insertRight(), removeLeft(),
  * removeRight(), isEmpty() и isFull(). Также в нем должна быть реализована поддержка
  * циклического переноса индексов, по аналогии с очередями.

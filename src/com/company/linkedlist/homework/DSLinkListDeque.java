@@ -4,7 +4,7 @@ import com.company.linkedlist.doublesidedlinklist.DoubleSidedLinkList;
 import com.company.linkedlist.linklist.Link;
 
 /**
- * 5.2. Реализуйте дек на базе двусвязного списка. Дек должен поддерживать все стандартные операции.
+ * @homework 5.2. Реализуйте дек на базе двусвязного списка. Дек должен поддерживать все стандартные операции.
  */
 
 public class DSLinkListDeque {

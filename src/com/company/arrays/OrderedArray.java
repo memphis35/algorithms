@@ -5,7 +5,7 @@ import com.company.exceptions.NumberDuplicatedException;
 import java.util.Arrays;
 
 /**
- * Программный проект 2.4. Измените программу orderedArray.java (листинг 2.4) так, чтобы методы
+ * @homework 2.4. Измените программу orderedArray.java (листинг 2.4) так, чтобы методы
  * insert() и delete(), а также метод find() использовали двоичный поиск.
  */
 class OrderedArray extends HighArray {

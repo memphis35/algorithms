@@ -17,7 +17,7 @@ public class DoubleSidedLinkList extends LinkList {
         if (isEmpty()) {
             last = newElement;
         }
-        newElement.next = first;
+        newElement.setNext(first);
         first = newElement;
     }
 
@@ -26,7 +26,7 @@ public class DoubleSidedLinkList extends LinkList {
             insert(data);
         } else {
             Link newElement = new Link(data);
-            last.next = newElement;
+            last.setNext(newElement);
             last = newElement;
         }
     }
@@ -35,7 +35,7 @@ public class DoubleSidedLinkList extends LinkList {
     public Link delete() throws EmptyListException {
         Link result = first;
         if (!isEmpty()) {
-            first = first.next;
+            first = first.getNext();
             if (isEmpty()) {
                 last = null;
             }
@@ -48,16 +48,16 @@ public class DoubleSidedLinkList extends LinkList {
     public Link deleteLast() throws EmptyListException {
         Link current = first;
         Link previous = first;
-        while (current.next != null) {
+        while (current.getNext() != null) {
             previous = current;
-            current = current.next;
+            current = current.getNext();
         }
         Link result = current;
         if (current.equals(first)) {
             delete();
         } else {
             last = previous;
-            previous.next = null;
+            previous.setNext(null);
         }
         return result;
     }

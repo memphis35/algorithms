@@ -20,16 +20,16 @@ public class SortedLinkList extends LinkList {
             Link previous = this.first;
             while (current != null && data.compareTo(current.getData()) >= 0) {
                 previous = current;
-                current = current.next;
+                current = current.getNext();
             }
             if (current == null) {
-                previous.next = element;
+                previous.setNext(element);
             } else if (current.equals(this.first)) {
-                element.next = first;
+                element.setNext(first);
                 first = element;
             } else {
-                element.next = current;
-                previous.next = element;
+                element.setNext(current);
+                previous.setNext(element);
             }
         }
     }

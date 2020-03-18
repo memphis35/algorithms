@@ -21,7 +21,7 @@ public class LinkListIterator {
 
     public Link next() {
         previous = current;
-        current = current.next;
+        current = current.getNext();
         return current;
     }
 }

@@ -3,7 +3,7 @@ package com.company.queue;
 import com.company.exceptions.EmptyStackException;
 
 /**
- * 4.3. Напишите реализацию стека на базе класса Deque из п. 4.2. Класс стека должен
+ * @homework 4.3. Напишите реализацию стека на базе класса Deque из п. 4.2. Класс стека должен
  * поддерживать те же методы и возможности, что и класс StackX в программе stack.java (см. листинг 4.1).
  */
 

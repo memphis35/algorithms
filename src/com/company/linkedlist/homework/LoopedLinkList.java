@@ -4,7 +4,7 @@ import com.company.exceptions.EmptyListException;
 import com.company.linkedlist.linklist.Link;
 
 /**
- * 5.3. Циклическим списком называется связанный список, в котором последний
+ * @homework 5.3. Циклическим списком называется связанный список, в котором последний
  * элемент содержит ссылку на первый элемент. Существует много способов реализа-
  * ции циклических списков. Иногда объект списка содержит указатель на «начало»
  * списка. Однако в этом случае список уже не похож на замкнутый круг, а больше
@@ -25,44 +25,39 @@ public class LoopedLinkList {
 
     private Link current;
 
-    private Link getCurrent() {
+    public void setCurrent(Link current) {
+        this.current = current;
+    }
+
+    Link getCurrent() {
         return current;
     }
 
     public void insert(String data) {
         Link element = new Link(data);
         if (isEmpty()) {
+            element.setNext(element);
             current = element;
-            element.next = element;
-        } else if (current.equals(current.next)) {
-            current.next = element;
-            element.next = current;
         } else {
-            element.next = current.next;
-            current.next = element;
+            element.setNext(current.getNext());
+            current.setNext(element);
         }
     }
 
     public void next() {
-        if (current.next != null) {
-            current = current.next;
+        if (current.getNext() != null) {
+            current = current.getNext();
         }
     }
 
     public Link delete() throws EmptyListException {
-        Link result = current.next;
-        Link temp = current.next;
-        if (!isEmpty()) {
-            if (current.equals(current.next)) {
-                current = null;
-            } else {
-                temp = temp.next;
-                current.next = temp;
-            }
+        Link result = current.getNext();
+        if (!isOnlyOne()) {
+            current.setNext(current.getNext().getNext());
         } else {
-            throw new EmptyListException("Empty list.");
+            current = null;
         }
-        next();
+        result.setNext(null);
         return result;
     }
 
@@ -76,12 +71,17 @@ public class LoopedLinkList {
         }
     }
 
+    private boolean isOnlyOne() {
+        return current.equals(current.getNext());
+    }
+
     public static void main(String[] args) {
         LoopedLinkList example = new LoopedLinkList();
         example.insert("Mike");
         example.insert("Alex");
         example.insert("Fiona");
         example.insert("Shaun");
+        example.insert("Emily");
         System.out.println(example.getCurrent().getData());
         while (!example.isEmpty()) {
             System.out.println(example.delete().getData());

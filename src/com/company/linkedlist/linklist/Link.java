@@ -2,7 +2,7 @@ package com.company.linkedlist.linklist;
 
 public class Link {
 
-    public Link next;
+    private Link next;
     private String data;
 
     public Link(String data) {
@@ -15,6 +15,10 @@ public class Link {
 
     public Link getNext() {
         return next;
+    }
+
+    public void setNext(Link next) {
+        this.next = next;
     }
 
     public void displayLink() {
