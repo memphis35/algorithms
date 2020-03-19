@@ -44,7 +44,7 @@ public class LoopedLinkList {
         }
     }
 
-    public void next() {
+    private void next() {
         if (current.getNext() != null) {
             current = current.getNext();
         }
@@ -52,7 +52,7 @@ public class LoopedLinkList {
 
     public Link delete() throws EmptyListException {
         Link result = current.getNext();
-        if (!isOnlyOne()) {
+        if (isOnlyOne()) {
             current.setNext(current.getNext().getNext());
         } else {
             current = null;
@@ -72,20 +72,52 @@ public class LoopedLinkList {
     }
 
     private boolean isOnlyOne() {
-        return current.equals(current.getNext());
+        return !current.equals(current.getNext());
     }
 
-    public static void main(String[] args) {
-        LoopedLinkList example = new LoopedLinkList();
-        example.insert("Mike");
-        example.insert("Alex");
-        example.insert("Fiona");
-        example.insert("Shaun");
-        example.insert("Emily");
-        System.out.println(example.getCurrent().getData());
-        while (!example.isEmpty()) {
-            System.out.println(example.delete().getData());
+    /**
+     * @homework 5.5 Задача Иосифа Флавия — известная математическая задача с историческим
+     * подтекстом. Существует много легенд о том, как она возникла. В одной из них
+     * говорится, что Иосиф был в составе гарнизона осажденной крепости, которую
+     * должны были захватить римляне. Защитники крепости предпочли смерть рабству.
+     * Они выстроились в круг, и начинали считать по кругу, выбрав в качестве начала
+     * отсчета конкретного человека. Каждый n-й по счету покидал круг и совершал само-
+     * убийство. Иосиф решил, что ему умирать еще рано, и выбрал такие правила, чтобы
+     * остаться последним из выживших. Если в круге было (например) 20 человек и он
+     * был седьмым от начала отсчета, какое число следовало выбрать для отсчета? Задача
+     * сильно усложняется тем, что круг уменьшается по мере выбывания участников.
+     * Создайте приложение, моделирующее задачу с использованием циклического
+     * связанного списка (как в проекте 5.3). Во входных параметрах передаются коли-
+     * чество людей в круге, число для отсчета и номер человека, с которого начинается
+     * отсчет (чаще всего 1). Программа выводит список выбывающих. Когда один из
+     * участников выходит из круга, отсчет начинается заново слева от него (предпо-
+     * лагается, что отсчет ведется по часовой стрелке). Например, если в круге стоят
+     * семеро участников с номерами от 1 до 7, а отсчет ведется через 3 позиции (начиная
+     * с позиции 1), то участники выбывают в порядке 4, 1, 6, 5, 7, 3. Номер 2 остается
+     * последним.
+     */
+
+    private void fill(int quantity) {
+        int i = 1;
+        Link temp = new Link("man #" + i);
+        current = temp;
+        while (i++ < quantity) {
+            temp.setNext(new Link("man #" + i));
+            temp = temp.getNext();
         }
+        temp.setNext(current);
+        current = temp;
     }
 
+    private void whereIsJoseph(int mans, int even) {
+        fill(mans);
+        while (isOnlyOne()) {
+            int i = even;
+            while (i-- > 1) {
+                next();
+            }
+            System.out.println("Deleting " + delete().getData());
+        }
+        System.out.println("Joseph is a " + current.getData());
+    }
 }
