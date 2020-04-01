@@ -33,7 +33,6 @@ public class OrderedArrayTest {
         test.clear();
         test.fillTeam();
         test.display();
-        assertEquals(10, test.getSize());
     }
 
     @Test

@@ -1,5 +1,12 @@
 package com.company.recursion;
 
+import com.sun.xml.internal.messaging.saaj.util.CharReader;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 public class RecursionPractice {
 
     /**
@@ -7,7 +14,7 @@ public class RecursionPractice {
      * Дано натуральное число n. Выведите все числа от 1 до n.
      */
 
-    public void fromOneToN(int n) {
+    private void fromOneToN(int n) {
         if (n > 1) {
             fromOneToN(n - 1);
         }
@@ -21,7 +28,7 @@ public class RecursionPractice {
      * если A < B, или в порядке убывания в противном случае.
      */
 
-    public void fromAtoB(int a, int b) {
+    private void fromAtoB(int a, int b) {
         if (a < b) {
             System.out.println(a);
             fromAtoB(a + 1, b);
@@ -40,7 +47,7 @@ public class RecursionPractice {
      * A(m, n) = { A(m-1, 1)            m > 0, n = 0 }
      * { A(m-1, A(m, n-1),    m > 0, n > 0 }
      */
-    public int functionOfAckermann(int m, int n) {
+    private int functionOfAckermann(int m, int n) {
         if (m == 0) {
             return n + 1;
         } else if (m > 0 && n == 0) {
@@ -56,7 +63,7 @@ public class RecursionPractice {
      * Операцией возведения в степень пользоваться нельзя!
      */
 
-    public boolean isLogOfTwo(double n) {
+    private boolean isLogOfTwo(double n) {
         n = Math.sqrt(n);
         if (n % 2 != 0) {
             return false;
@@ -71,7 +78,7 @@ public class RecursionPractice {
      * E: Дано натуральное число N. Вычислите сумму его цифр.
      * При решении этой задачи нельзя использовать строки, списки, массивы (ну и циклы, разумеется).
      */
-    public int sumOfDigits(int n) {
+    private int sumOfDigits(int n) {
         if (n > 0) {
             return n % 10 + sumOfDigits(n / 10);
         }
@@ -85,7 +92,7 @@ public class RecursionPractice {
      * строки, списки, массивы (ну и циклы, разумеется). Разрешена только рекурсия и целочисленная арифметика.
      */
 
-    public void revertDigits(int n) {
+    private void revertDigits(int n) {
         if (n > 0) {
             System.out.print(n % 10 + "\t");
             revertDigits(n / 10);
@@ -99,7 +106,7 @@ public class RecursionPractice {
      * Разрешена только рекурсия и целочисленная арифметика.
      */
 
-    public void straightDigits(int n) {
+    private void straightDigits(int n) {
         if (n > 0) {
             straightDigits(n / 10);
             System.out.print(n % 10 + "\t");
@@ -114,8 +121,8 @@ public class RecursionPractice {
      * никак не сводится к проверке на простоту меньших чисел. Поэтому нужно сделать еще один параметр рекурсии:
      * делитель числа, и именно по этому параметру и делать рекурсию.
      */
-    public boolean checkSimpleNumber(int number, int div) { // решение за время O(N), при больших значениях падает StackOverFlow
-        if ( div != number && number % div == 0) {
+    private boolean checkSimpleNumber(int number, int div) { // решение за время O(N), при больших значениях падает StackOverFlow
+        if (div != number && number % div == 0) {
             return false;
         } else if (div == number) {
             return true;
@@ -130,10 +137,10 @@ public class RecursionPractice {
      * возрастания с учетом кратности. Алгоритм должен иметь сложность O(logN).
      */
 
-    public void showDividers(int number, int div) { // решение за время O(N), при больших значениях падает StackOverFlow
+    private void showDividers(int number, int div) { // решение за время O(N), при больших значениях падает StackOverFlow
         if (number % div == 0 && div != number) {
             System.out.println(div + "\t");
-            showDividers(number/div, div);
+            showDividers(number / div, div);
         } else if (div == number) {
             System.out.println(div + "\t");
         } else {
@@ -147,11 +154,41 @@ public class RecursionPractice {
      * При решении этой задачи нельзя пользоваться циклами, в решениях на питоне нельзя использовать срезы с шагом, отличным от 1.
      */
 
-    public void checkPalindrome(String word) {
+    private boolean checkPalindrome(String word) {
+        if (word.length() < 2) {
+            return true;
+        } else if (word.charAt(0) == word.charAt(word.length() - 1)) {
+            return checkPalindrome(word.substring(1, word.length() - 1));
+        } else {
+            return false;
+        }
     }
 
-    public static void main(String[] args) {
-        RecursionPractice test = new RecursionPractice();
+    /**
+     * K: Вывести нечетные числа последовательности
+     * Дана последовательность натуральных чисел (одно число в строке), завершающаяся числом 0.
+     * Выведите все нечетные числа из этой последовательности, сохраняя их порядок.
+     * В этой задаче нельзя использовать глобальные переменные и передавать какие-либо параметры
+     * в рекурсивную функцию. Функция получает данные, считывая их с клавиатуры.
+     * Функция не возвращает значение, а сразу же выводит результат на экран. Основная программа
+     * должна состоять только из вызова этой функции.
+     */
 
+    private void showOddDigits() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        int digit = reader.read();
+        if (digit == 0 ) {
+            reader.close();
+            return;
+        }
+        if (digit % 2 != 0) {
+            System.out.print(digit);
+        }
+        showOddDigits();
+    }
+
+    public static void main(String[] args) throws IOException {
+        RecursionPractice test = new RecursionPractice();
+        test.showOddDigits();
     }
 }
